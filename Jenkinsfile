@@ -42,7 +42,7 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
-                sh 'docker run -itd -p 8083:8080 simple-java-app'
+                sh 'docker run -itd --name simple-java-app'
             }
         }
     }
