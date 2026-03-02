@@ -39,11 +39,13 @@ pipeline {
                 sh 'docker build -t simple-java-app .'
             }
         }
-
         stage('Run Docker Container') {
-            steps {
-                sh 'docker run -itd --name simple-java-app'
-            }
-        }
+    steps {
+        sh '''
+        docker rm -f simple-java-app-container || true
+        docker run -d --name simple-java-app-container simple-java-app
+        '''
+    }
+}
     }
 }
